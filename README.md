@@ -20,4 +20,3 @@ This repository hosts the dotfiles. The files are manged by GHU Stow.
 
 # References
 - [Using GNU Stow](https://systemcrafters.net/managing-your-dotfiles/using-gnu-stow/)
-- 
