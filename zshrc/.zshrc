@@ -85,7 +85,6 @@ plugins=(
   zsh-history-substring-search
   zsh-autosuggestions
   zsh-syntax-highlighting
-  tmux
   poetry
 )
 
@@ -240,3 +239,6 @@ eval "$(direnv hook zsh)"
 
 # Created by `pipx` on 2023-10-22 09:22:48
 export PATH="$PATH:/Users/asiri/.local/bin"
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
