@@ -85,7 +85,6 @@ plugins=(
   zsh-history-substring-search
   zsh-autosuggestions
   zsh-syntax-highlighting
-  poetry
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -205,8 +204,8 @@ alias gsup="setUpstream"
 alias gmnc='git merge --no-ff --no-commit'
 alias zconf="subl ~/.zshrc"
 
-## z
-source "$(brew --prefix)/etc/profile.d/z.sh"
+## zoxide
+eval "$(zoxide init zsh)"
 
 ## kubernetes
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
@@ -234,11 +233,13 @@ eval "$(register-python-argcomplete pipx)"
 ## direnv
 eval "$(direnv hook zsh)"
 
+## pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
 #################### asiri #######################
 
-
-# Created by `pipx` on 2023-10-22 09:22:48
-export PATH="$PATH:/Users/asiri/.local/bin"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
