@@ -135,17 +135,18 @@ unset __conda_setup
 
 #################### asiri #######################
 
-## 1password
+##--------- 1password ------------
 eval "$(op completion zsh)"; compdef _op op
 
-## cheat
+##---------- cheat -----------
 export EDITOR=/usr/bin/vim
 export CHEATCOLORS=true
 
-## history config
+##--------------- history config ---------------
 setopt hist_ignore_all_dups
 setopt hist_ignore_space
 
+##------------ kube toggle --------------
 function kube-toggle() {
   if (( ${+POWERLEVEL9K_KUBECONTEXT_SHOW_ON_COMMAND} )); then
     unset POWERLEVEL9K_KUBECONTEXT_SHOW_ON_COMMAND
@@ -162,11 +163,11 @@ function kube-toggle() {
 zle -N kube-toggle
 bindkey '^]' kube-toggle  # ctrl-] to toggle kubecontext in powerlevel10k prompt
 
-## nvm
+##--------------------- nvm -------------------
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
-## fzf
+##------------ fzf -------------
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 if type rg &> /dev/null; then
   export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --no-ignore-vcs'
@@ -183,7 +184,7 @@ _fzf_comprun() {
   esac
 }
 
-## git alias
+##------------- git alias --------------
 # deletes local branches for those which remotes have been deleted.
 function cleanGitBranches() {
   git fetch -p
@@ -204,10 +205,11 @@ alias gsup="setUpstream"
 alias gmnc='git merge --no-ff --no-commit'
 alias zconf="subl ~/.zshrc"
 
-## zoxide
+##----------- zoxide ---------------
 eval "$(zoxide init zsh)"
+alias cd="z"
 
-## kubernetes
+##-------- kubernetes ------------
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 alias k='kubectl'
@@ -221,22 +223,32 @@ alias ker='kubectl explain --recursive'
 alias kn='kubectl config set-context --current --namespace '
 alias ktemp='k run bash --image bash --rm --restart=Never -it --'
 
-## tfenv
+##-------------- tfenv ----------------
 export PATH="$PATH:$HOME/.tfenv/bin"
 
 ## pipx completions 
 autoload -U bashcompinit
 bashcompinit
 
-eval "$(register-python-argcomplete pipx)"
+# eval "$(register-python-argcomplete pipx)"
 
-## direnv
+##----------- direnv ------------
 eval "$(direnv hook zsh)"
 
 ## pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+
+##----------- make ------------
+export PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
+
+##----------- java ------------
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
+
+##------------- eza -------------
+alias ls="eza --icons=always"
 
 #################### asiri #######################
 

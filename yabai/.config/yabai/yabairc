@@ -17,4 +17,11 @@ yabai -m rule --add app="^System Settings$" manage=off
 yabai -m rule --add app="^Calculator$" manage=off
 yabai -m rule --add app="^Karabiner-Elements$" manage=off
 yabai -m rule --add app="^Hand Mirror$" manage=off
+yabai -m rule --add app="^Time Machine$" manage=off
+yabai -m rule --add app="^Alfred Preferences$" manage=off
+yabai -m rule --add app="^Beyond Compare$" manage=off
+
+## move apps to specific spaces
+yabai -m rule --add app="^Wavebox$" space=1
+yabai -m rule --add app="WhatsApp" display=2 # top
 
