@@ -143,8 +143,14 @@ export EDITOR=/usr/bin/vim
 export CHEATCOLORS=true
 
 ##--------------- history config ---------------
+setopt share_history
+setopt hist_expire_dups_first
+setopt hist_verify
 setopt hist_ignore_all_dups
 setopt hist_ignore_space
+
+bindkey '^[[A' history-search-backward
+bindkey '^[[B' history-search-forward
 
 ##------------ kube toggle --------------
 function kube-toggle() {
@@ -249,6 +255,17 @@ eval "$(jenv init -)"
 
 ##------------- eza -------------
 alias ls="eza --icons=always"
+
+##------------- yazi --------------
+
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
 
 #################### asiri #######################
 
